@@ -10,13 +10,13 @@ KSOPS 2.1.2+
 Ensure you have the key to decrypt secrets. Reach out to members of the Data Hub team for access.
 
 ### GPG Key access
- 
+
 This repo encrypts secrets using a dev test key, you can find the test key in examples/key.asc folder.
 
 ```
 $ cat examples/key.asc > base64 -d
 ```
 
-You will need to import this key to be able to decrypt the contents of the secrets using sops. 
+You will need to import this key to be able to decrypt the contents of the secrets using sops.
 
-Do NOT use this gpg key for prod purposes. 
+Do NOT use this gpg key for prod purposes.
