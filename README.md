@@ -14,7 +14,7 @@ Ensure you have the key to decrypt secrets. Reach out to members of the Data Hub
 This repo encrypts secrets using a dev test key, you can find the test key in examples/key.asc folder.
 
 ```
-$ cat examples/key.asc > base64 -d
+$ base64 -d < examples/key.asc | gpg --import
 ```
 
 You will need to import this key to be able to decrypt the contents of the secrets using sops.
