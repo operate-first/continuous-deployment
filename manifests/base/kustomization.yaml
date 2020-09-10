@@ -9,3 +9,4 @@ patchesStrategicMerge:
 - services/argocd_server_metrics_service_patch.yaml
 - deployments/argocd-repo-server_patch.yaml
 - deployments/argocd-server_patch.yaml
+- deployments/argocd-redis_patch.yaml

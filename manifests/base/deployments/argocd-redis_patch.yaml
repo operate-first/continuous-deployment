@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-redis
+spec:
+  template:
+    spec:
+      containers:
+      - args:
+        - --save
+        - ""
+        - --appendonly
+        - "no"
+        image: redis:5.0.8
+        imagePullPolicy: Always
+        name: redis
+        ports:
+        - containerPort: 6379
+      securityContext:
+        fsGroup: ""
+        runAsGroup: ""
+        runAsNonRoot: true
+        runAsUser: ""
