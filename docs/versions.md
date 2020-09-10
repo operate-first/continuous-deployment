@@ -1,12 +1,12 @@
 # Versions
 
-ArgoCD: 1.6.1
+ArgoCD: 1.7.4
 
-KSOPs: 2.1.2
+KSOPs: 2.1.4
 
 Kustomize: 3.8.0
 
-SOPS: 3.6.0+
+SOPS: 3.6.0
 
 The KSOPS and Kustomize versions refer to the ones provisioned with ArgoCD.
 
