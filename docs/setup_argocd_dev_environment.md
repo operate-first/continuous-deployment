@@ -41,7 +41,7 @@ Run the following commands to clean up your environment.
 ```
 kustomize build manifests/overlays/dev --enable_alpha_plugins | oc delete -f -
 kustomize build manifests/crds --enable_alpha_plugins | oc delete -f -
-oc delete group dev
+oc delete group dev-group
 oc delete project argocd-test
 oc delete project aicoe-argocd-dev
 ```

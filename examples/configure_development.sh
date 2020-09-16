@@ -4,11 +4,6 @@
 # Retrieve the ArgoCD route, api rest server url, and configure the redirect uri.
 ARGOCD_ROUTE=https://$(oc get route argocd-server -n aicoe-argocd-dev -o jsonpath='{.spec.host}')
 API_SERVER=$(oc whoami --show-server)
-ARGOCD_REDIRECT_URI=${ARGOCD_ROUTE}/api/dex/callback
-
-# We need to configure a service account to act as an Oauth Client. Run the
-# following command to do so:
-oc patch serviceaccount argocd-dex-server -n aicoe-argocd-dev --type='json' -p="[{'op': 'add', 'path': '/metadata/annotations/serviceaccounts.openshift.io~1oauth-redirecturi.aicoe-argocd', 'value':'${ARGOCD_REDIRECT_URI}'}]"
 
 # Set up the issuer secret for the dex config:
 OAUTH_TOKEN="$(echo -e "$(oc sa get-token argocd-dex-server -n aicoe-argocd-dev | base64)" | tr -d '[:space:]')"
