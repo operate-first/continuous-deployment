@@ -10,7 +10,7 @@ OAUTH_TOKEN="$(echo -e "$(oc sa get-token argocd-dex-server -n aicoe-argocd-dev 
 oc patch secret argocd-secret -n aicoe-argocd-dev --type='json' -p="[{'op': 'add', 'path': '/data/dex.serviceaccount.clientSecret', 'value':'${OAUTH_TOKEN}'}]"
 
 # Update Issuer and ArgoCD URL in dex config:
-oc -n aicoe-argocd-dev get configmap argocd-cm -o yaml | sed "s#API_SERVER#${API_SERVER}#g" | sed "s#ARGOCD_ROUTE#${ARGOCD_ROUTE}#g" | oc replace -f -
+oc -n aicoe-argocd-dev get configmap argocd-cm -o yaml | sed "s#ARGOCD_ROUTE#${ARGOCD_ROUTE}#g" | oc replace -f -
 
 # Once we create the argocd-manager and its rbac, we need to update our cluster
 # spec. The Cluster Spec contains information about your dev cluster, here we
