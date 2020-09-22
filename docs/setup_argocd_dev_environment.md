@@ -2,7 +2,7 @@
 
 ## Prequisites
 * An OCP 4.x Development cluster
-* Must have cluster admin
+* Must have cluster admin (not kube:admin)
 
 ## Instructions
 
@@ -14,7 +14,7 @@ oc new-project argocd-test
 oc new-project aicoe-argocd-dev
 ```
 
-Deploy ArgoCD
+### Deploy ArgoCD
 ```bash
 git clone git@github.com:operate-first/continuous-deployment.git
 cd continuous-deployment
@@ -31,6 +31,8 @@ Once deployed, there are some additional configurations, run this script:
 ```bash
 examples/configure_development.sh
 ```
+The script needs to be run under a user with the cluster admin role, but not with `kube:admin`.
+
 Feel free to look inside the script for detailed comments on what configurations are applied.
 
 ## Cleanup
