@@ -1,6 +1,6 @@
 # Deployment on CRC
 
-These is how to deploy ArgoCD on [CRC](https://developers.redhat.com/products/codeready-containers/overview).
+This is how to deploy ArgoCD on [CRC](https://developers.redhat.com/products/codeready-containers/overview).
 
 ## Instalation Steps
 
@@ -11,16 +11,13 @@ These is how to deploy ArgoCD on [CRC](https://developers.redhat.com/products/co
    `crc config set memory 16384` \
    `crc start`
 
- * Get `kustomize` and KSOPS using steps in [manage_your_app_secrets.md](../manage_your_app_secrets.md)
-
-   * If you hit:\
-``` unrecognized import path "vbom.ml/util": https fetch: Get "https://vbom.ml/util?go-get=1": dial tcp ```\
-fix it with https://github.com/viaduct-ai/kustomize-sops/issues/60
-
-* As an alternative to installing the prerequisites locally, you can use Toolbox: https://github.com/containers/toolbox \
+* Use Toolbox to get the command line tools needed: https://github.com/containers/toolbox \
    `toolbox create --image quay.io/aicoe/of-toolbox:v0.1.0` \
    `toolbox enter --container of-toolbox-v0.1.0` \
    Then you have all the tools needed running in a separate container.
+
+As an alternative you can install the prerequisites locally:
+ * Get `kustomize` and KSOPS using steps in [manage_your_app_secrets.md](../manage_your_app_secrets.md)
 
  * Fork https://github.com/operate-first/continuous-deployment
 
