@@ -25,9 +25,16 @@
 9. Use the link and credentials from the **Cluster Information** section to access your cluster.
    ![Cluster information](../assets/images/quicklab/cluster_information.png)
 
+10. Login as the `kubeadmin`, take the value from "Hosts" and port 6443.\
+    For example:
+
+   ```sh
+   oc login upi-0.tcoufaltest.lab.upshift.rdu2.redhat.com:6443
+   ```
+
 ## Install Argo CD on your cluster
 
-1. kube:admin is not supported in user api, therefore user has to create additional user. Simplest way is to deploy an Oauth via Htpasswd:
+1. kube:admin is not supported in user api, therefore you have to create additional user. Simplest way is to deploy an Oauth via Htpasswd:
 
 2. Create a htpasswd config file and deploy it to OpenShift:
 
@@ -38,14 +45,14 @@
    apiVersion: config.openshift.io/v1
    kind: OAuth
    metadata:
-   name: cluster
+     name: cluster
    spec:
-   identityProviders:
-   - name: my_htpasswd_provider
+     identityProviders:
+     - name: my_htpasswd_provider
        mappingMethod: claim
        type: HTPasswd
        htpasswd:
-       fileData:
+         fileData:
            name: htpass-secret
    EOF
    ```
@@ -56,9 +63,15 @@
    oc adm policy add-cluster-role-to-user cluster-admin username
    ```
 
-4. Now log out and log in using the htpasswd provider. Generate new API token and login via this token on your local CLI
+4. Now log out and log in using the htpasswd provider (the new username). Generate new API token and login via this token on your local CLI
 
-5. Now you can follow the upstream docs:
+5. Now you can follow the upstream docs. Create the projects:
+   ```sh
+   oc new-project argocd-test
+   oc new-project aicoe-argocd-dev
+   ```
+
+6. And deploy
 
    ```sh
    $ kustomize build manifests/crds --enable_alpha_plugins | oc apply -f -
