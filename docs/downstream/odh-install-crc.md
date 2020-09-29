@@ -37,20 +37,30 @@ Now we can proceed with creating the ArgoCD Applications. We will create 2 appli
   1. The ODH operator. (Installs the ODH operator itself `odh-operator`.)
   1. The ODH deployment. (Installs ODH components into `odh-deployment`.)
 
-### Creating the ODH opetaror
+### Creating the ODH operator
 
-Go to https://argocd-server-aicoe-argocd-dev.apps-crc.testing/applications and click "New App". Enter these values:
+You can create the Application resource from the command line using
+
+```bash
+oc apply -f examples/odh-operator-app.yaml
+```
+
+Or you can go to https://argocd-server-aicoe-argocd-dev.apps-crc.testing/applications and click "New App" and entering these values:
 
 | Field            | Value                                                |
 |------------------|------------------------------------------------------|
 | Project:         | Default                                              |
 | Cluster:         | dev-cluster (https://api.crc.testing.6443)           |
 | Namespace:       | odh-operator                                         |
-| Repo URL:        | https://github.com/anishasthana/my-odh-install.git   |
+| Repo URL:        | https://github.com/operate-first/odh.git             |
 | Target revision: | HEAD                                                 |
 | Path:            | odh-operator/base                                    |
 
-This creates an app from definition in the repo under the path `odh-operator/base` and deploys it to the `odh-operator` namespace on the `dev-cluster`. Please note that the namespace is also hard-coded in the repo so changing it requires changing files in the repo.
+This creates an app from definition in the repo under the path `odh-operator/base` and deploys it to the `odh-operator` namespace on the `dev-cluster`.
+
+This app is all about deploying the Open Data Hub operator to your cluster.
+
+Please note that the namespace is also hard-coded in the repo so changing it requires changing files in the repo.
 
 
 Create the app and you will see Argo deploying resources:
@@ -58,18 +68,26 @@ Create the app and you will see Argo deploying resources:
 
 ### Creating the ODH deployment
 
-Again go to https://argocd-server-aicoe-argocd-dev.apps-crc.testing/applications, click "New App" and enter these values:
+Again, either from the command line:
+
+```bash
+oc apply -f examples/odh-deployment-app.yaml
+```
+
+or again going to https://argocd-server-aicoe-argocd-dev.apps-crc.testing/applications, clicking "New App" and entering these values:
 
 | Field            | Value                                               |
 |------------------|-----------------------------------------------------|
-|Project:         | Default                                              |
-|Cluster:         | dev-cluster (https://api.crc.testing.6443)           |
-|Namespace:       | odh-deployment                                       |
-|Repo URL:        | https://github.com/anishasthana/my-odh-install.git   |
-|Target revision: | HEAD                                                 |
-|Path:            | odh-operator-kfdef                                   |
+| Project:         | Default                                              |
+| Cluster:         | dev-cluster (https://api.crc.testing.6443)           |
+| Namespace:       | odh-deployment                                       |
+| Repo URL:        | https://github.com/operate-first/odh.git             |
+| Target revision: | HEAD                                                 |
+| Path:            | odh-operator-kfdef                                   |
 
-Based on the content of .... you will see components of ODH being created similar to:
+This is about the actual deployment of Open Data Hub to your cluster.
+
+Based on the content of `kfdef.yaml` (you will see components of ODH being created similar to:
 
 ![ODH operator](../assets/images/crc/odh-deployment.png)
 
@@ -80,3 +98,6 @@ NAME         HOST/PORT                                    PATH   SERVICES     PO
 jupyterhub   jupyterhub-odh-deployment.apps-crc.testing          jupyterhub   8080-tcp   edge/Redirect   None
 superset     superset-odh-deployment.apps-crc.testing            superset     8088-tcp                   None
 ```
+
+
+To alter components deployed or anything else about the configuration fork https://github.com/operate-first/odh and replace references to this repo with your own fork.
