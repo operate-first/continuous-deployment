@@ -1,5 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
+metadata:
+  name: odh-deployment
 spec:
   destination:
     namespace: odh-deployment
