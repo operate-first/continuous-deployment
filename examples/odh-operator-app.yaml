@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  destination:
+    namespace: odh-operator
+    server: https://api.crc.testing:6443
+  project: default
+  source:
+    path: odh-operator/base
+    repoURL: https://github.com/operate-first/odh.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - Validate=false

@@ -2,7 +2,7 @@
 
 This is how to deploy ArgoCD on [CRC](https://developers.redhat.com/products/codeready-containers/overview).
 
-## Instalation Steps
+## Installation Steps
 
  * Setup CRC https://developers.redhat.com/products/codeready-containers/overview
    * Do not forget to install the corresponding version of `oc` tool or some commands might fail.
@@ -26,6 +26,6 @@ As an alternative you can install the prerequisites locally:
 
  * Proceed with [setup_argocd_dev_environment.md](../setup_argocd_dev_environment.md)
 
-Your ArgoCD instance will be running at https://argocd-server-aicoe-argocd-dev.apps-crc.testing/
+Your ArgoCD instance will be running at https://argocd-server-aicoe-argocd-dev.apps-crc.testing/. You can login as admin/admin.
 
 ![ArgoCD](../assets/images/crc/argocd-initial.png)
