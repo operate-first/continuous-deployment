@@ -22,7 +22,7 @@ As an alternative you can install the prerequisites locally:
  * Fork https://github.com/operate-first/continuous-deployment
 
  * Import GPG key that is used by kustomize to encrypt the secrets.\
-    ```base64 -d < examples/key.asc | gpg --import ```
+   ```base64 -d < examples/key.asc | gpg --import ```
 
  * Proceed with [setup_argocd_dev_environment.md](../setup_argocd_dev_environment.md)
 
