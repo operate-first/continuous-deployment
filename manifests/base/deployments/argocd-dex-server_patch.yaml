@@ -8,8 +8,8 @@ spec:
       containers:
       - name: dex
         env:
-          - name: DEX_OAUTH_CLIENT_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: argocd-dex-server-oauth-token
-                key: token
+        - name: DEX_OAUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: argocd-dex-server-oauth-token
+              key: token
