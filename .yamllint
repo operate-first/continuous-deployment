@@ -1,0 +1,6 @@
+rules:
+  indentation:
+    level: error
+    indent-sequences: consistent
+ignore: |
+  manifests/overlays/dev/resources/configs/
