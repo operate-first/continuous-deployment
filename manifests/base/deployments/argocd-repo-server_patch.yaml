@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: argocd-repo-server
-        image: quay.io/aicoe/argocd:v1.7.4-1
+        image: quay.io/aicoe/argocd:v1.7.4-2
         env:
         - name: GNUPGHOME
           value: /home/argocd/.gnupg
