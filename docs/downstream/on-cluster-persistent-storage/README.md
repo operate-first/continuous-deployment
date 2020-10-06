@@ -37,10 +37,12 @@ See automated Ansible playbook bellow for easier-to-use provisioning
    yum install nfs-utils
    ```
 
-3. Create exported directories (for example in `/mnt/nfs`)
+3. Create exported directories (for example in `/mnt/nfs`) and set ownership and permissions
 
    ```sh
    mkdir -p /mnt/nfs/A ...
+   chown nfsnobody:nfsnobody /mnt/nfs/A
+   chmod 0777 /mnt/nfs/A
    ```
 
 4. Populate `/etc/exports` file referencing directories from previous step to be accessible from your nodes as read,write:
@@ -53,7 +55,7 @@ See automated Ansible playbook bellow for easier-to-use provisioning
 5. Allow NFS in firewall
 
    ```sh
-   firewall-cmd --permanent --add-service moun
+   firewall-cmd --permanent --add-service mountd
    firewall-cmd --permanent --add-service rpc-bind
    firewall-cmd --permanent --add-service nfs
    firewall-cmd --reload
@@ -62,7 +64,7 @@ See automated Ansible playbook bellow for easier-to-use provisioning
 6. Start and enable NFS service
 
    ```sh
-   systemctl enable --now nfs-serv
+   systemctl enable --now nfs-server
    ```
 
 ### Add PersistentVolumes to Openshift cluster
