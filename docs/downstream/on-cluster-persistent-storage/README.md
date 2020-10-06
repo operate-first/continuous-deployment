@@ -8,11 +8,13 @@ Please verify that your cluster really lacks `pv`s:
 2. Lookup available `PersistentVolume` resources:
 
    ```bash
-   \$ oc get pv
+   $ oc get pv
    No resources found
    ```
 
 If there are no `PersistentVolume`s available please continue and follow this guide. We're gonna set up NFS server on the cluster node and show Openshift how to connect to it.
+
+Note: This guide will lead you through the process of setting up PVs, which use the deprecated `Recycle` reclaim policy. This makes the `PersistentVolume` available again as soon as the `PersistentVolumeClaim` resource is terminated and removed. However the data are left on the NFS share untouched. While this is suitable for development purposes, be advised that old data (from previous mounts) will be still available on the volume. Please consult [Kubernetes docs](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming) for other options.
 
 ## Manual steps
 
