@@ -95,7 +95,7 @@ To avoid all the hustle with manual setup, we can use an Ansible playbook [`play
 
 ### Setup
 
-Please install Ansible and some additional collections from Ansible Galaxy needed by this playbook: [ansible.posix](https://galaxy.ansible.com/ansible/posix) for `firewalld` module and [community.kubernetes](https://galaxy.ansible.com/community/kubernetes) for `k8s` module.
+Please install Ansible and some additional collections from Ansible Galaxy needed by this playbook: [ansible.posix](https://galaxy.ansible.com/ansible/posix) for `firewalld` module and [community.kubernetes](https://galaxy.ansible.com/community/kubernetes) for `k8s` module. Also install the underlying python dependency `openshift`.
 
 ```bash
 $ ansible-galaxy collection install ansible.posix
@@ -113,7 +113,15 @@ Starting collection install process
 Installing 'community.kubernetes:1.0.0' to '/home/tcoufal/.ansible/collections/ansible_collections/community/kubernetes'
 Downloading https://galaxy.ansible.com/download/community-kubernetes-1.0.0.tar.gz to /home/tcoufal/.ansible/tmp/ansible-local-29431yk2zoutk/tmpwgl4xsnb
 community.kubernetes (1.0.0) was installed successfully
+
+$ pip install --user openshift
+...
+Installing collected packages: kubernetes, openshift
+    Running setup.py install for openshift ... done
+Successfully installed kubernetes-11.0.0 openshift-0.11.2
 ```
+
+Additionally please login to your Quicklab cluster via `oc login` as a cluster admin.
 
 ### Configuration
 
@@ -151,90 +159,90 @@ $ ansible-playbook playbook.yaml
 <summary>Click to expand output</summary>
 
 ```bash
-PLAY [Dynamically create Quicklab host in Ansible] **********************************************************************************************************************************
+PLAY [Dynamically create Quicklab host in Ansible] **********************************************************************
 
-TASK [Gathering Facts] **************************************************************************************************************************************************************
+TASK [Gathering Facts] **************************************************************************************************
 ok: [localhost]
 
-TASK [include_vars] *****************************************************************************************************************************************************************
+TASK [Load variables file] **********************************************************************************************
 ok: [localhost]
 
-TASK [set_fact] *********************************************************************************************************************************************************************
+TASK [Preprocess the PV count per size map to a flat list] **************************************************************
 ok: [localhost]
 
-TASK [Fetch Quicklab certificate] ***************************************************************************************************************************************************
+TASK [Fetch Quicklab certificate] ***************************************************************************************
 ok: [localhost]
 
-TASK [Adding host] ******************************************************************************************************************************************************************
+TASK [Adding host] ******************************************************************************************************
 changed: [localhost]
 
-TASK [community.kubernetes.k8s_info] ************************************************************************************************************************************************
+TASK [Get available Openshift nodes] ************************************************************************************
 ok: [localhost]
 
-TASK [set_fact] *********************************************************************************************************************************************************************
+TASK [Preprocess nodes k8s resource response to list of IPs] ************************************************************
 ok: [localhost]
 
-PLAY [Setup NFS on Openshift host] **************************************************************************************************************************************************
+PLAY [Setup NFS on Openshift host] **************************************************************************************
 
-TASK [Gathering Facts] **************************************************************************************************************************************************************
+TASK [Gathering Facts] **************************************************************************************************
 ok: [quicklab]
 
-TASK [set_fact] *********************************************************************************************************************************************************************
+TASK [Copy localhost variables for easier access] ***********************************************************************
 ok: [quicklab]
 
-TASK [Install the NFS server] *******************************************************************************************************************************************************
+TASK [Install the NFS server] *******************************************************************************************
 ok: [quicklab]
 
-TASK [Create export dirs] ***********************************************************************************************************************************************************
-ok: [quicklab] => (item=['1Gi', 0])
-ok: [quicklab] => (item=['1Gi', 1])
-ok: [quicklab] => (item=['1Gi', 2])
-ok: [quicklab] => (item=['1Gi', 3])
-ok: [quicklab] => (item=['1Gi', 4])
-ok: [quicklab] => (item=['1Gi', 5])
-ok: [quicklab] => (item=['2Gi', 0])
-ok: [quicklab] => (item=['2Gi', 1])
-ok: [quicklab] => (item=['5Gi', 0])
+TASK [Create export dirs] ***********************************************************************************************
+changed: [quicklab] => (item=['1Gi', 0])
+changed: [quicklab] => (item=['1Gi', 1])
+changed: [quicklab] => (item=['1Gi', 2])
+changed: [quicklab] => (item=['1Gi', 3])
+changed: [quicklab] => (item=['1Gi', 4])
+changed: [quicklab] => (item=['1Gi', 5])
+changed: [quicklab] => (item=['2Gi', 0])
+changed: [quicklab] => (item=['2Gi', 1])
+changed: [quicklab] => (item=['5Gi', 0])
 
-TASK [Populate /etc/exports file] ***************************************************************************************************************************************************
+TASK [Populate /etc/exports file] ***************************************************************************************
 changed: [quicklab]
 
-TASK [Allow services in firewall] ***************************************************************************************************************************************************
-ok: [quicklab] => (item=nfs)
-ok: [quicklab] => (item=rpc-bind)
-ok: [quicklab] => (item=mountd)
+TASK [Allow services in firewall] ***************************************************************************************
+changed: [quicklab] => (item=nfs)
+changed: [quicklab] => (item=rpc-bind)
+changed: [quicklab] => (item=mountd)
 
-TASK [Reload firewall] **************************************************************************************************************************************************************
+TASK [Reload firewall] **************************************************************************************************
 changed: [quicklab]
 
-TASK [Enable and start NFS server] **************************************************************************************************************************************************
-ok: [quicklab]
-
-TASK [Reload exports when the server was already started] ***************************************************************************************************************************
+TASK [Enable and start NFS server] **************************************************************************************
 changed: [quicklab]
 
-PLAY [Create PersistentVolumes in OpenShift] ****************************************************************************************************************************************
+TASK [Reload exports when the server was already started] ***************************************************************
+skipping: [quicklab]
 
-TASK [Gathering Facts] **************************************************************************************************************************************************************
+PLAY [Create PersistentVolumes in OpenShift] ****************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************
 ok: [localhost]
 
-TASK [Find IPv4 of the host] ********************************************************************************************************************************************************
+TASK [Find IPv4 of the host] ********************************************************************************************
 ok: [localhost]
 
-TASK [Create PersistentVolume resource] *********************************************************************************************************************************************
-ok: [localhost] => (item=['1Gi', 0])
-ok: [localhost] => (item=['1Gi', 1])
-ok: [localhost] => (item=['1Gi', 2])
-ok: [localhost] => (item=['1Gi', 3])
-ok: [localhost] => (item=['1Gi', 4])
-ok: [localhost] => (item=['1Gi', 5])
-ok: [localhost] => (item=['2Gi', 0])
-ok: [localhost] => (item=['2Gi', 1])
-ok: [localhost] => (item=['5Gi', 0])
+TASK [Create PersistentVolume resource] *********************************************************************************
+changed: [localhost] => (item=['1Gi', 0])
+changed: [localhost] => (item=['1Gi', 1])
+changed: [localhost] => (item=['1Gi', 2])
+changed: [localhost] => (item=['1Gi', 3])
+changed: [localhost] => (item=['1Gi', 4])
+changed: [localhost] => (item=['1Gi', 5])
+changed: [localhost] => (item=['2Gi', 0])
+changed: [localhost] => (item=['2Gi', 1])
+changed: [localhost] => (item=['5Gi', 0])
 
-PLAY RECAP **************************************************************************************************************************************************************************
-localhost                  : ok=10   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-quicklab                   : ok=9    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP **************************************************************************************************************
+localhost                  : ok=10   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+quicklab                   : ok=8    changed=5    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 ```
 
 </details>

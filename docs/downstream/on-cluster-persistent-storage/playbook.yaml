@@ -2,9 +2,11 @@
 - name: Dynamically create Quicklab host in Ansible
   hosts: localhost
   pre_tasks:
-    - include_vars:
+    - name: Load variables file
+      include_vars:
         file: "{% if vars_file is defined %}{{ vars_file }}{% else %}env.yaml{% endif %}"
-    - set_fact:
+    - name: Preprocess the PV count per size map to a flat list
+      set_fact:
         pv_list: '[{% for size, count in pv_count_per_size.items() %}{% for i in range(count) %}["{{ size }}", {{ i }}],{% endfor %}{% endfor %}]'
   tasks:
     - name: Fetch Quicklab certificate
@@ -22,19 +24,20 @@
         ansible_become: true
         ansible_ssh_extra_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 
-    - name: Get hostnames of nodes
-      block:
-        - community.kubernetes.k8s_info:
-            kind: Node
-          register: nodes
+    - name: Get available Openshift nodes
+      community.kubernetes.k8s_info:
+        kind: Node
+      register: nodes
 
-        - set_fact:
-            nodes: '[{% for r in nodes.resources %}{% for a in r.status.addresses %}{% if a.type == "InternalIP" %}"{{ a.address }}",{% endif %}{% endfor %}{% endfor %}]'
+    - name: Preprocess nodes k8s resource response to list of IPs
+      set_fact:
+        nodes: '[{% for r in nodes.resources %}{% for a in r.status.addresses %}{% if a.type == "InternalIP" %}"{{ a.address }}",{% endif %}{% endfor %}{% endfor %}]'
 
 - name: Setup NFS on Openshift host
   hosts: quicklab
   pre_tasks:
-    - set_fact:
+    - name: Copy localhost variables for easier access
+      set_fact:
         pv_list: "{{ hostvars.localhost.pv_list }}"
         nodes: "{{ hostvars.localhost.nodes }}"
   tasks:
