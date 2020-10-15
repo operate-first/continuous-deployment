@@ -13,8 +13,9 @@ oc apply -f examples/argocd-cluster-binding.yaml
 
 oc patch secret dev-cluster-spec -n aicoe-argocd-dev --type='json' -p="[{'op': 'replace', 'path': '/data/namespaces', 'value':''}]"
 
-sed -e "1,\$s/https:\\/\\/api.crc.testing:6443/$API/" < examples/odh-operator-app.yaml   | oc apply -f -
-sed -e "1,\$s/https:\\/\\/api.crc.testing:6443/$API/" < examples/odh-deployment-app.yaml | oc apply -f -
+oc project aicoe-argocd-dev
+oc apply -f examples/odh-operator-app.yaml
+oc apply -f examples/odh-deployment-app.yaml
 
 # wait for routes for jupyterhub, superset and other ODH components to appear
 oc get -w routes -n odh-deployment

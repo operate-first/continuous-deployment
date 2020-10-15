@@ -15,6 +15,7 @@ oc apply -f examples/argocd-cluster-binding.yaml
 
 oc patch secret dev-cluster-spec -n aicoe-argocd-dev --type='json' -p="[{'op': 'replace', 'path': '/data/namespaces', 'value':''}]"
 
+oc project aicoe-argocd-dev
 oc apply -f examples/odh-operator-app.yaml
 oc apply -f examples/odh-deployment-app.yaml
 
