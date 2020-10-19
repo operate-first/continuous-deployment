@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     namespace: odh-deployment
-    server: https://api.crc.testing:6443
+    name: dev-cluster
   project: default
   source:
     path: odh-operator-kfdef
