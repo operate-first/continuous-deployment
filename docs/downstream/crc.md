@@ -11,6 +11,8 @@ This is how to deploy ArgoCD on [CRC](https://developers.redhat.com/products/cod
    `crc config set memory 16384` \
    `crc start`
 
+   * Consider adding [more disk space](./crc-disk-size.md) to your CRC.
+
 * Use Toolbox to get the command line tools needed: https://github.com/containers/toolbox \
    `toolbox create --image quay.io/aicoe/of-toolbox:v0.1.0` \
    `toolbox enter --container of-toolbox-v0.1.0` \
