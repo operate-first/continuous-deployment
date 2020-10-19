@@ -12,4 +12,7 @@ CRC stands for Code Ready Containers. Downlaod CRC here: https://developers.redh
 # Quicklab
 
 * [Instalation of ArgoCD](./downstream/quicklab.md)
+* [Setup Persistent Volumes](./downstream/on-cluster-persistent-storage/README.md)
 * [Instalation of ODH](./downstream/odh-install-quicklab.md)
+
+
