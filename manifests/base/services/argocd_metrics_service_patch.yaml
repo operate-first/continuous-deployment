@@ -3,4 +3,4 @@ kind: Service
 metadata:
   name: argocd-metrics
   labels:
-    app.kubernetes.io/purpose: aicoe-cd-metrics
+    app.kubernetes.io/purpose: argocd-metrics
