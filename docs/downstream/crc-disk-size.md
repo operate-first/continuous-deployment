@@ -36,4 +36,3 @@ df -h /sysroot
 ```
 
 And we are done.
-
