@@ -17,7 +17,7 @@ spec:
         lifecycle:
           postStart:
             exec:
-              command: ["/bin/sh", "-c", "gpg --import /key/private.key"]
+              command: ["/bin/sh", "-c", "gpg --import /key/*"]
       volumes:
       - name: key
         secret:
