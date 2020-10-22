@@ -9,6 +9,8 @@
 3. Select **openshift4upi** template and a region you like the most, then select the reservation duration, the rest can be left as is:
    ![Select a template](../assets/images/quicklab/template_select.png)
 
+   **Note**: You may need to assign additional worker nodes for your cluster if you are planning to [install multiple ODH components](./odh-install-quicklab.md).
+
 4. Go to cluster page by clicking on the cluster name in **My clusters** table
 
 5. Once the cluster reaches **Active** state your cluster history should look like this:
