@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: odh-deployment
+  name: odh-deployment-jupyterhub
 spec:
   destination:
-    namespace: odh-deployment
+    namespace: odh-deployment-jupyterhub
     name: dev-cluster
   project: default
   source:
-    path: odh-operator-kfdef
+    path: kfdef/jupyterhub
     repoURL: https://github.com/operate-first/odh.git
     targetRevision: HEAD
   syncPolicy:
@@ -16,4 +16,24 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-    - Validate=false
+      - Validate=false
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: odh-deployment-superset
+spec:
+  destination:
+    namespace: odh-deployment-superset
+    name: dev-cluster
+  project: default
+  source:
+    path: kfdef/superset
+    repoURL: https://github.com/operate-first/odh.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=false
