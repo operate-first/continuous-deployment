@@ -10,11 +10,11 @@ oc get packagemanifests -n openshift-marketplace | grep opendatahub-operator
 
 If it's not present, then you need to troubleshoot the marketplace: https://github.com/operator-framework/operator-marketplace/issues/344
 
-Then we need to create a projects named `odh-operator` and `odh-deployment-*`. (The name of the project is hard-coded in the `kustomize` files in https://github.com/anishasthana/my-odh-install and you can change is there using `kustomize`.)
+Then we need to create a projects named `odh-operator` and `opf-*`. (The name of the project is hard-coded in the `kustomize` files in https://github.com/operate-first/odh and you can change is there using `kustomize`.)
 
 ```bash
 oc new-project odh-operator
-oc new-project odh-deployment-{jupyterhub,superset}
+oc new-project opf-{jupyterhub,superset}
 ```
 
 Our ArgoCD SA `argocd-manager` needs to have access to the new project. On CRC I suggest giving `argocd-manager` access to all projects by creating a ClusterRoleBinding to a ClusterRole.
@@ -34,7 +34,7 @@ Be aware that if you change this value in the ArgoCD UI, you might loose the sto
 Now we can proceed with creating the ArgoCD Applications. We will create 2 applications:
 
 1. The ODH operator. (Installs the ODH operator itself `odh-operator`.)
-1. The ODH deployment. (Installs ODH components into `odh-deployment-*`.)
+1. The ODH deployment. (Installs ODH components into `opf-*`.)
 
 ### Creating the ODH operator
 
@@ -78,7 +78,7 @@ or again going to https://argocd-server-aicoe-argocd-dev.apps-crc.testing/applic
 | ---------------- | ------------------------------------------ |
 | Project:         | Default                                    |
 | Cluster:         | dev-cluster (https://api.crc.testing.6443) |
-| Namespace:       | odh-deployment-jupyterhub                  |
+| Namespace:       | opf-jupyterhub                             |
 | Repo URL:        | https://github.com/operate-first/odh.git   |
 | Target revision: | HEAD                                       |
 | Path:            | kfdef/jupyterhub                           |
@@ -87,7 +87,7 @@ or again going to https://argocd-server-aicoe-argocd-dev.apps-crc.testing/applic
 | ---------------- | ------------------------------------------ |
 | Project:         | Default                                    |
 | Cluster:         | dev-cluster (https://api.crc.testing.6443) |
-| Namespace:       | odh-deployment-superset                    |
+| Namespace:       | opf-superset                               |
 | Repo URL:        | https://github.com/operate-first/odh.git   |
 | Target revision: | HEAD                                       |
 | Path:            | kfdef/superset                             |
@@ -101,13 +101,13 @@ Based on the content of `kfdef.yaml` (you will see components of ODH being creat
 You can find routes for your new ODH instance by running:
 
 ```bash
-$ oc get routes -n odh-deployment-jupyterhub
+$ oc get routes -n opf-jupyterhub
 NAME         HOST/PORT                                               PATH   SERVICES     PORT       TERMINATION     WILDCARD
-jupyterhub   jupyterhub-odh-deployment-jupyterhub.apps-crc.testing          jupyterhub   8080-tcp   edge/Redirect   None
+jupyterhub   jupyterhub-opf-jupyterhub.apps-crc.testing          jupyterhub   8080-tcp   edge/Redirect   None
 
-$ oc get routes -n odh-deployment-superset
+$ oc get routes -n opf-superset
 NAME         HOST/PORT                                               PATH   SERVICES     PORT       TERMINATION     WILDCARD
-superset     superset-odh-deployment-superset.apps-crc.testing              superset     8088-tcp                   None
+superset     superset-opf-superset.apps-crc.testing              superset     8088-tcp                   None
 ```
 
 To alter components deployed or anything else about the configuration fork https://github.com/operate-first/odh and replace references to this repo with your own fork.

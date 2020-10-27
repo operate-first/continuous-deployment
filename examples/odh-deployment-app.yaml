@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: odh-deployment-jupyterhub
+  name: opf-jupyterhub
 spec:
   destination:
-    namespace: odh-deployment-jupyterhub
+    namespace: opf-jupyterhub
     name: dev-cluster
   project: default
   source:
@@ -21,10 +21,10 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: odh-deployment-superset
+  name: opf-superset
 spec:
   destination:
-    namespace: odh-deployment-superset
+    namespace: opf-superset
     name: dev-cluster
   project: default
   source:
