@@ -3,7 +3,7 @@ when interacting with ArgoCD.
 
 # CRC
 
-CRC stands for Code Ready Containers. Downlaod CRC here: https://developers.redhat.com/products/codeready-containers/overview
+CRC stands for Code Ready Containers. Download CRC here: https://developers.redhat.com/products/codeready-containers/overview
 
 * [Instalation of ArgoCD](./downstream/crc.md)
 * [Instalation of ODH](./downstream/odh-install-crc.md)
