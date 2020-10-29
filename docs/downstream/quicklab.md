@@ -71,7 +71,9 @@
    oc new-project aicoe-argocd-dev
    ```
 
-6. And deploy
+6. Make sure you have imported the required [gpg keys](../../README.md#gpg-key-access)
+
+7. And deploy
 
    ```sh
    $ kustomize build manifests/crds --enable_alpha_plugins | oc apply -f -
