@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-application-controller
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: '*'
+spec:
+  template:
+    spec:
+      containers:
+      - image: argocd-custom
+        name: argocd-application-controller

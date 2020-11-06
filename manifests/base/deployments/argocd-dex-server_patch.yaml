@@ -2,14 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-dex-server
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: '*'
 spec:
   template:
     spec:
       containers:
       - name: dex
+        image: argocd-dex-server
         env:
         - name: DEX_OAUTH_CLIENT_SECRET
           valueFrom:
             secretKeyRef:
               name: argocd-dex-server-oauth-token
               key: token
+      initContainers:
+      - name: copyutil
+        image: argocd-custom

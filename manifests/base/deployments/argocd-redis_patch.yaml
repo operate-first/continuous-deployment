@@ -6,6 +6,8 @@ metadata:
     app.kubernetes.io/name: argocd-redis
     app.kubernetes.io/part-of: argocd
   name: argocd-redis
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: '*'
 spec:
   selector:
     matchLabels:
@@ -21,7 +23,7 @@ spec:
         - ""
         - --appendonly
         - "no"
-        image: redis:5.0.8
+        image: redis
         imagePullPolicy: Always
         name: redis
         ports:
