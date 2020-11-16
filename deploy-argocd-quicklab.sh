@@ -15,7 +15,9 @@ if ! $kustomize --help > /dev/null; then
   exit 1
 fi
 
-# oc login -u kubeadmin -p rSszg-hYQnn-h9zsi-aAoEb upi-0.mptest.lab.upshift.rdu2.redhat.com:6443
+echo -e "${EMP}Checking for GPG key${NORMAL}"
+gpg --list-keys john@doe.com || base64 -d < examples/key.asc | gpg --import
+
 oc login -u kubeadmin -p $KUBEPASS $API
 
 echo -e "${EMP}Creating admin user 'myadmin'${NORMAL}"
