@@ -6,8 +6,6 @@ metadata:
     app.kubernetes.io/name: argocd-redis
     app.kubernetes.io/part-of: argocd
   name: argocd-redis
-  annotations:
-    alpha.image.policy.openshift.io/resolve-names: '*'
 spec:
   selector:
     matchLabels:
@@ -16,6 +14,8 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: argocd-redis
+      annotations:
+        alpha.image.policy.openshift.io/resolve-names: '*'
     spec:
       containers:
       - args:

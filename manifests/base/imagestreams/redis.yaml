@@ -3,7 +3,11 @@ apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
   name: redis
+  annotations:
+    openshift.io/display-name: redis
 spec:
+  lookupPolicy:
+    local: true
   tags:
     - name: latest
       from:
