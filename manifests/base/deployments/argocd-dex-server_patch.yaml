@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-dex-server
-  annotations:
-    alpha.image.policy.openshift.io/resolve-names: '*'
 spec:
   template:
+    metadata:
+      annotations:
+        alpha.image.policy.openshift.io/resolve-names: '*'
     spec:
       containers:
       - name: dex
