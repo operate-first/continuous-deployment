@@ -1,3 +1,6 @@
+EMP="\e[1;4m"
+NORMAL="\e[0m"
+
 echo -e "${EMP}Logging to CRC${NORMAL}"
 login_command=$(crc console --credentials | grep admin | cut -d "'" -f 2)
 $login_command

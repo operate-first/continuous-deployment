@@ -1,5 +1,8 @@
 API=upi-0.mptest.lab.upshift.rdu2.redhat.com:6443
 
+EMP="\e[1;4m"
+NORMAL="\e[0m"
+
 echo -e "${EMP}Checking that the ODH operator is present in the Marketplace${NORMAL}"
 if ! oc get packagemanifests/opendatahub-operator -n openshift-marketplace >/dev/null; then
   echo -e "${EMP}ODH is missing in the operator manifests --> aborting${NORMAL}"
