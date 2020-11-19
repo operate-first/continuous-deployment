@@ -8,7 +8,7 @@ else
 fi
 
 echo -e "${EMP}Checking if CRC is running...${NORMAL}"
-if crc status | grep Stopped > /dev/null; then
+if crc status 2>&1 | grep -E '(Stopped|does not exist)' > /dev/null; then
   echo -e "${EMP}CRC is not running ---> aborting${NORMAL}"
   exit 1
 fi
@@ -36,7 +36,17 @@ $login_command
 echo -e "${EMP}Creating a user and logging in${NORMAL}"
 examples/crc-create-myadmin.sh
 
-oc login -u myadmin -p foobar68 https://api.crc.testing:6443
+echo 'sleeping 10s'
+
+i=1
+while ! oc login -u myadmin -p foobar68 https://api.crc.testing:6443; do
+  i=$(( $i + 1 ))
+  if [ $i -ge 10 ]; then
+    exit 1
+  fi
+  echo "Cannot login as newly created 'myadmin'. Waiting 10s for the $i time."
+  sleep 10
+done
 
 echo -e "${EMP}Creating projects ${NORMAL}"
 oc new-project argocd-test
