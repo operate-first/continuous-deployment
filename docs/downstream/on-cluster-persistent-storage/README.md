@@ -148,9 +148,6 @@ pv_count_per_size:
 
 Run the `playbook.yaml` (if you created a new environment file and you'd like to use other than default `env.yaml`, please specify the file via `-e vars_file=any-filename.yaml`)
 
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable commands-show-output no-inline-html -->
-
 ```bash
 $ ansible-playbook playbook.yaml
 ```
@@ -246,4 +243,3 @@ quicklab                   : ok=8    changed=5    unreachable=0    failed=0    s
 ```
 
 </details>
-<!-- markdownlint-restore -->
