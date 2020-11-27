@@ -1,0 +1,101 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: setup-sample-usecase-
+spec:
+  entrypoint: entrypoint
+  templates:
+    - name: entrypoint
+      steps:
+        - - name: ceph-data
+            template: ceph-data
+          - name: hive-table
+            template: hive-table
+          - name: superset-dashboard
+            template: superset-dashboard
+
+    - name: ceph-data
+      steps:
+        - - name: create-bucket
+            template: create-bucket
+          - name: download-and-save
+            template: download-and-save
+
+    - name: create-bucket
+      container:
+        image: quay.io/bitnami/minio-client:latest
+        args: ["mb", "SAMPLE-DATA"]
+        env:
+          - name: MINIO_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                key: AWS_ACCESS_KEY_ID
+                name: ceph-nano-credentials
+          - name: MINIO_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                key: AWS_SECRET_ACCESS_KEY
+                name: ceph-nano-credentials
+          - name: MINIO_SERVER_HOST
+            value: ceph-nano-0
+
+    - name: download-and-save
+      outputs:
+        artifacts:
+          - name: employee.csv
+            path: /tmp/employee.csv
+            archive: { none: {} }
+            s3:
+              endpoint: ceph-nano-0
+              bucket: SAMPLE-DATA
+              key: categorical-encoding/employee/data.csv
+              accessKeySecret:
+                key: AWS_ACCESS_KEY_ID
+                name: ceph-nano-credentials
+              secretKeySecret:
+                key: AWS_SECRET_ACCESS_KEY
+                name: ceph-nano-credentials
+      script:
+        image: registry.access.redhat.com/ubi8/ubi-minimal:latest
+        source: |
+          curl -O --output-dir /tmp https://raw.githubusercontent.com/aicoe-aiops/categorical-encoding/master/notebooks/data/employee.csv
+
+    - name: hive-table
+      script:
+        image: quay.io/opendatahub/spark-cluster-image:2.4.3-h2.7
+        command: ["beeline"]
+        script: |
+          !connect jdbc:hive2://thriftserver.opf-datacatalog.svc:10000 admin admin;
+
+          CREATE DATABASE IF NOT EXISTS categorical_encoding;
+          CREATE EXTERNAL TABLE IF categorical_encoding.employee (
+            year STRING,
+            name STRING,
+            department STRING,
+            title STRING,
+            remuneration DECIMAL,
+            expenses DECIMAL
+          )
+          ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+          WITH SERDEPROPERTIES (
+            "separatorChar" = ",",
+            "quoteChar" = "\"",
+            "escapeChar" = "\\"
+          )
+          LOCATION 's3a://$AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY@SAMPLE-DATA/categorical-encoding/employee/'
+        env:
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                key: AWS_ACCESS_KEY_ID
+                name: ceph-nano-credentials
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                key: AWS_SECRET_ACCESS_KEY
+                name: ceph-nano-credentials
+
+    - name: superset-dashboard
+      container: # NOOP for now
+        image: registry.access.redhat.com/ubi8/ubi-minimal:latest
+        args: ["sleep", "1s"]
