@@ -37,3 +37,23 @@ spec:
       selfHeal: true
     syncOptions:
       - Validate=false
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: opf-datacatalog
+spec:
+  destination:
+    namespace: opf-datacatalog
+    name: dev-cluster
+  project: default
+  source:
+    path: kfdef/datacatalog
+    repoURL: https://github.com/operate-first/odh.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=false
