@@ -1,5 +1,13 @@
-API=upi-0.mptest.lab.upshift.rdu2.redhat.com:6443
 KUBEPASS=rSszg-hYQnn-h9zsi-aAoEb
+
+if [ "$#" -ne 3 ]; then
+  echo "Usage: deploy-argocd-quicklab.sh API_ADDRESS KUBEPASSWORD quicklab_htpassword"
+  exit 1
+fi
+
+API=$1
+KUBEPASS=$2
+QLPASS=$3
 
 EMP="\e[1;4m"
 NORMAL="\e[0m"
@@ -18,29 +26,12 @@ fi
 echo -e "${EMP}Checking for GPG key${NORMAL}"
 gpg --list-keys john@doe.com || base64 -d < examples/key.asc | gpg --import
 
+oc login -u quicklab -p $QLPASS
+
 oc login -u kubeadmin -p $KUBEPASS $API
+oc adm policy add-cluster-role-to-user cluster-admin quicklab
 
-echo -e "${EMP}Creating admin user 'myadmin'${NORMAL}"
-htpasswd -nb myadmin foobar68 > /tmp/oc.htpasswd
-oc create secret generic htpass-secret --from-file=htpasswd=/tmp/oc.htpasswd -n openshift-config
-cat <<EOF | oc apply -f -
-apiVersion: config.openshift.io/v1
-kind: OAuth
-metadata:
-  name: cluster
-spec:
-  identityProviders:
-  - name: my_htpasswd_provider
-    mappingMethod: claim
-    type: HTPasswd
-    htpasswd:
-      fileData:
-        name: htpass-secret
-EOF
-
-oc login -u myadmin -p foobar68
-oc adm policy add-cluster-role-to-user cluster-admin myadmin
-
+oc login -u quicklab -p $QLPASS
 oc new-project argocd-test
 oc new-project aicoe-argocd-dev
 
