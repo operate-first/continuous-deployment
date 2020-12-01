@@ -24,4 +24,3 @@ oc apply -f examples/odh-deployment-app.yaml
 
 # wait for routes for jupyterhub, superset and other ODH components to appear
 oc get -w routes -n odh-deployment
-
