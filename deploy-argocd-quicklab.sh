@@ -38,9 +38,8 @@ spec:
         name: htpass-secret
 EOF
 
-oc adm policy add-cluster-role-to-user cluster-admin myadmin
-
 oc login -u myadmin -p foobar68
+oc adm policy add-cluster-role-to-user cluster-admin myadmin
 
 oc new-project argocd-test
 oc new-project aicoe-argocd-dev
