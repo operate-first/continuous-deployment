@@ -73,9 +73,29 @@ creation_rules:
   - encrypted_regex: '^(data|stringData)$'
     # Specify kms/pgp/etc encryption key
     pgp: '<gpg-fingerprint>'
+
+    # Alternatively, you can specify multiple keys by doing the following
+
+    pgp: >-
+      <key_fingerprint_1>,
+      <key_fingerprint_2>,
+      ......
+      <key_fingerprint_n>
     # Optionally you can configure to use a providers key store
     # kms: XXXXXX
     # gcp_kms: XXXXXX
+```
+
+#### Multiple keys
+
+If you want ArgoCD to use multiple keys, you will need to modify the `data` field in
+`manifests/overlays/<environment>/secrets/gpg/secret.enc.yaml` to include the extra key.
+
+```yaml
+data:
+  private.key: <sops_encrypted_key>
+  extra.key: <sops_encrypted_key>
+  ......
 ```
 
 ### 6. Create a Resource
