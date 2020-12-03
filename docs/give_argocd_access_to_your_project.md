@@ -1,6 +1,6 @@
 # Give ArgoCD access to your project
 
-ArgoCD uses an SA named `argocd-manager` to deploy resources to another cluster/namespace. These SAs need access to the resources it will be deploying, this is done via roles and rolebindings.
+ArgoCD uses an SA (Service Account) named `argocd-manager` to deploy resources to another cluster/namespace. These SAs need access to the resources it will be deploying, this is done via roles and rolebindings.
 
 In your namespace, you will need to deploy a rolebinding like the one below:
 
