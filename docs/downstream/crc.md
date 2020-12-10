@@ -6,12 +6,15 @@ This is how to deploy ArgoCD on [CRC](https://developers.redhat.com/products/cod
 
  * Setup CRC https://developers.redhat.com/products/codeready-containers/overview
    * Do not forget to install the corresponding version of `oc` tool or some commands might fail.
-   * add more memory to CRC : \
-   `crc delete` \
-   `crc config set memory 16384` \
-   `crc start`
 
-   * Consider adding [more disk space](./crc-disk-size.md) to your CRC.
+   * With the latest CRC, you can setup memory, CPU and disk side at the command line when starting CRC for the first time. E.g.:
+
+   ```
+	crc start -c 4 -d 64 -m 32768 -p  /home/big/crc-pull-secret.txt
+   ```
+
+   * You can also add [more disk space](./crc-disk-size.md) to your existing CRC image.
+
 
 * Use Toolbox to get the command line tools needed: https://github.com/containers/toolbox \
    `toolbox create --image quay.io/aicoe/of-toolbox:v0.1.0` \
