@@ -4,13 +4,9 @@ metadata:
   name: argocd-server
 spec:
   template:
-    metadata:
-      annotations:
-        alpha.image.policy.openshift.io/resolve-names: '*'
     spec:
       containers:
       - name: argocd-server
-        image: argocd-custom
         command:
         - argocd-server
         - --staticassets

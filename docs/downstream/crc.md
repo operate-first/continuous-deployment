@@ -10,7 +10,7 @@ This is how to deploy ArgoCD on [CRC](https://developers.redhat.com/products/cod
    * With the latest CRC, you can setup memory, CPU and disk side at the command line when starting CRC for the first time. E.g.:
 
    ```
-	crc start -c 4 -d 64 -m 32768 -p  /home/big/crc-pull-secret.txt
+    crc start -c 4 -d 64 -m 32768 -p  /home/big/crc-pull-secret.txt
    ```
 
    * You can also add [more disk space](./crc-disk-size.md) to your existing CRC image.
