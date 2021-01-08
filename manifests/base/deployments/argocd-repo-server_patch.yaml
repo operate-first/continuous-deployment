@@ -4,13 +4,9 @@ metadata:
   name: argocd-repo-server
 spec:
   template:
-    metadata:
-      annotations:
-        alpha.image.policy.openshift.io/resolve-names: '*'
     spec:
       containers:
       - name: argocd-repo-server
-        image: argocd-custom
         env:
         - name: GNUPGHOME
           value: /home/argocd/.gnupg

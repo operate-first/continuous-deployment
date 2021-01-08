@@ -4,6 +4,6 @@ check:
 build:
   build-stratergy: Dockerfile
   registry: quay.io
-  registry-org: aicoe
+  registry-org: operate-first
   registry-project: argocd
-  registry-secret: aicoe-pusher-secret
+  registry-secret: operate-first-pusher-secret

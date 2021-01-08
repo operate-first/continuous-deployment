@@ -1,7 +1,7 @@
-ARG ARGO_CD_VERSION="v1.7.4"
+ARG ARGO_CD_VERSION="v1.8.1"
 # Always match Argo CD Dockerfile's Go version!
 # https://github.com/argoproj/argo-cd/blob/master/Dockerfile
-ARG KSOPS_VERSION="v2.1.4"
+ARG KSOPS_VERSION="v2.3.2"
 #--------------------------------------------#
 #--------Build KSOPS and Kustomize-----------#
 #--------------------------------------------#
@@ -22,7 +22,7 @@ ENV XDG_DATA_HOME=/home/argocd/.local/share
 ENV XDG_CACHE_HOME=/home/argocd/.cache
 ENV XDG_CONFIG_HOME=/home/argocd/.config
 ENV KUSTOMIZE_PLUGIN_PATH=$XDG_CONFIG_HOME/kustomize/plugin/
-ARG SOPS_VERSION="v3.6.0"
+ARG SOPS_VERSION="v3.6.1"
 ARG HELM_SECRETS_VERSION="2.0.2"
 ARG PKG_NAME=ksops
 
