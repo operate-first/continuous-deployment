@@ -8,8 +8,8 @@ spec:
     name: in-cluster
   project: default
   source:
-    path: odh-operator/base
-    repoURL: https://github.com/operate-first/odh.git
+    path: odh/base/operator
+    repoURL: https://github.com/operate-first/apps.git
     targetRevision: HEAD
   syncPolicy:
     automated:
