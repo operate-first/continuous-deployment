@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     namespace: odh-operator
-    name: dev-cluster
+    name: in-cluster
   project: default
   source:
     path: odh-operator/base

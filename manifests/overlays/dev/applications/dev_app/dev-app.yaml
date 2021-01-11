@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     namespace: argocd-test
-    name: dev-cluster
+    name: in-cluster
   project: dev
   source:
     path: guestbook

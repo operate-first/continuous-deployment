@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     namespace: opf-jupyterhub
-    name: dev-cluster
+    name: in-cluster
   project: default
   source:
     path: kfdef/jupyterhub
@@ -25,7 +25,7 @@ metadata:
 spec:
   destination:
     namespace: opf-superset
-    name: dev-cluster
+    name: in-cluster
   project: default
   source:
     path: kfdef/superset

@@ -21,7 +21,7 @@ Our ArgoCD SA `argocd-manager` needs to have access to the new project. On CRC I
 
 `oc apply -f examples/argocd-cluster-binding.yaml`
 
-Then you need to change the `dev-cluster` to include all projects/namespace. (This is done by actually removing the value of `namespace`).
+Then you need to change the `dev-cluster-spec` to include all projects/namespace. (This is done by actually removing the value of `namespace`).
 
 ```bash
 oc patch secret dev-cluster-spec -n aicoe-argocd-dev --type='json' -p="[{'op': 'replace', 'path': '/data/namespaces', 'value':''}]"
