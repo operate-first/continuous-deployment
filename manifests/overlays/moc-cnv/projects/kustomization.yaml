@@ -6,3 +6,4 @@ resources:
   - data-science.yaml
   - thoth.yaml
   - rekor.yaml
+  - mesh-for-data.yaml
