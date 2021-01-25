@@ -4,7 +4,7 @@ namespace: argocd
 resources:
 - ../../base
 - ../../crds
-- github.com/argoproj/argo-cd/manifests/cluster-rbac?ref=v1.8.1
+- github.com/argoproj/argo-cd/manifests/cluster-rbac?ref=v1.8.3
 - applications
 - projects
 - secrets/auth/dex-server-sa.yaml
