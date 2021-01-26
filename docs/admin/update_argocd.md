@@ -43,6 +43,8 @@ If updating ArgoCD's version, bump the remote image references in the following 
 - ArgoCD namespace manifests [here](https://github.com/operate-first/continuous-deployment/blob/master/manifests/base/kustomization.yaml#L4)
 - ArgoCD cluster rbac [here](https://github.com/operate-first/continuous-deployment/blob/master/manifests/crds/kustomization.yaml#L5)
 
+Do a search for other references to `github.com/argoproj/argo-cd` remote references and update accordingly where applicable.
+
 # Update Container Images
 Under the `images` section [here](https://github.com/operate-first/continuous-deployment/blob/master/manifests/base/kustomization.yaml), update the `operate-first/argocd` tag to `vX.X.X-Y`. For example, if updating to `v1.8.1-2` we would have the following new image in our `Kustomization`:
 

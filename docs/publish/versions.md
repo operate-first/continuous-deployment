@@ -2,9 +2,9 @@
 
 We use the following tools with corresponding versions.
 
-ArgoCD: 1.8.1
+ArgoCD: 1.8.3
 
-KSOPs: 2.3.2
+KSOPs: 2.3.3
 
 Kustomize: 3.8.0
 
@@ -12,7 +12,7 @@ SOPS: 3.6.1
 
 Helm: 3.4.1
 
-Helm-Secrets: 2.0.2
+Helm-Secrets: 3.4.1
 
 The KSOPS and Kustomize versions refer to the ones provisioned with ArgoCD.
 

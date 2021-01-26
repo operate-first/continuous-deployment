@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- github.com/argoproj/argo-cd/manifests/base?ref=v1.8.1
+- github.com/argoproj/argo-cd/manifests/base?ref=v1.8.3
 - routes/argocd_server_route.yaml
 - serviceaccounts/argocd-manager.yaml
 patchesStrategicMerge:
@@ -13,7 +13,7 @@ patchesStrategicMerge:
 images:
 - name: argoproj/argocd
   newName: quay.io/operate-first/argocd
-  newTag: v1.8.1-1
+  newTag: v1.8.3-1
 - name: redis
   newName: quay.io/operate-first/redis
   newTag: 5.0.10-alpine
