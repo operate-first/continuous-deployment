@@ -105,6 +105,8 @@ spec:
       kind: CephObjectStore
     - group: ceph.rook.io
       kind: CephObjectStoreUser
+    - group: logging.openshift.io
+      kind: ClusterLogging
     - group: core.observatorium.io
       kind: Observatorium
     - group: extensions
