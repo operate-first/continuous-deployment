@@ -7,3 +7,4 @@ resources:
   - thoth.yaml
   - rekor.yaml
   - mesh-for-data.yaml
+  - global_project.yaml
