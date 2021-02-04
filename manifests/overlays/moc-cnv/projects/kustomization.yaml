@@ -8,3 +8,4 @@ resources:
   - rekor.yaml
   - mesh-for-data.yaml
   - global_project.yaml
+  - workshops.yaml
