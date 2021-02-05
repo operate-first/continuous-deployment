@@ -60,6 +60,8 @@ spec:
       kind: KafkaTopic
     - group: kafka.strimzi.io
       kind: KafkaUser
+    - group: kfdef.apps.kubeflow.org
+      kind: KfDef
     - group: monitoring.coreos.com
       kind: Alertmanager
     - group: monitoring.coreos.com
