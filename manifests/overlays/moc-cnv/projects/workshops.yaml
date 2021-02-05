@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: workshops
+  labels:
+    project-template: global
+spec:
+  destinations:
+    - namespace: "ws-*"
+      server: "https://kubernetes.default.svc"
+  sourceRepos:
+    - "*"
+  roles:
+    - name: project-admin
+      description: Read/Write access to this project only
+      policies:
+        - p, proj:workshops:project-admin, applications, get, data-science/*, allow
+        - p, proj:workshops:project-admin, applications, create, data-science/*, allow
+        - p, proj:workshops:project-admin, applications, update, data-science/*, allow
+        - p, proj:workshops:project-admin, applications, delete, data-science/*, allow
+        - p, proj:workshops:project-admin, applications, sync, data-science/*, allow
+        - p, proj:workshops:project-admin, applications, override, data-science/*, allow
+        - p, proj:workshops:project-admin, applications, action/*, data-science/*, allow
+      groups:
+        - data-science
+        - operate-first
+        - workshops
