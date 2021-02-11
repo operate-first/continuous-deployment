@@ -8,6 +8,8 @@ spec:
   destinations:
     - namespace: 'ds-*'
       server: 'https://kubernetes.default.svc'
+    - namespace: 'opf-argo'
+      server: 'https://kubernetes.default.svc'
   sourceRepos:
     - '*'
   roles:
