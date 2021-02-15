@@ -6,7 +6,7 @@
 
 ## Instructions
 
-Create the project `aicoe-argocd-dev` and `argocd-test`. The latter wll be used
+Create the project `aicoe-argocd-dev` and `argocd-test`. The latter will be used
 for deploying a dev application via ArgoCD.
 
 ```bash
@@ -19,7 +19,7 @@ oc new-project aicoe-argocd-dev
 git clone git@github.com:operate-first/continuous-deployment.git
 cd continuous-deployment
 
-# Deploy Cluser objects
+# Deploy Cluster objects
 kustomize build manifests/crds --enable_alpha_plugins | oc apply -f -
 
 # Deploy Non Cluster objects
