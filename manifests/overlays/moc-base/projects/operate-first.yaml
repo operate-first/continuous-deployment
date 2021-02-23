@@ -7,11 +7,13 @@ metadata:
 spec:
   destinations:
     - namespace: 'opf-*'
-      server: 'https://kubernetes.default.svc'
+      server: 'https://api.moc-infra.massopen.cloud:6443'
     - namespace: 'argocd'
-      server: 'https://kubernetes.default.svc'
+      server: 'https://api.moc-infra.massopen.cloud:6443'
+    - namespace: 'opf-*'
+      server: 'https://api.cnv.massopen.cloud:6443'
     - namespace: 'openshift-logging'
-      server: 'https://kubernetes.default.svc'
+      server: 'https://api.cnv.massopen.cloud:6443'
   sourceRepos:
     - '*'
   roles:
