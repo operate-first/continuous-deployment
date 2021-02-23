@@ -8,6 +8,10 @@ spec:
   destinations:
     - namespace: "ws-*"
       server: 'https://api.cnv.massopen.cloud:6443'
+    - namespace: "ws-*"
+      server: 'https://api.cluster-9566.9566.example.opentlc.com:6443'
+    - namespace: "workshop-*"
+      server: 'https://api.cluster-9566.9566.example.opentlc.com:6443'
   sourceRepos:
     - "*"
   roles:
