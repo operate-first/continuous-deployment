@@ -8,8 +8,8 @@ spec:
     name: in-cluster
   project: default
   source:
-    path: kfdef/jupyterhub
-    repoURL: https://github.com/operate-first/odh.git
+    path: odh/overlays/quicklab/jupyterhub
+    repoURL: https://github.com/operate-first/apps.git
     targetRevision: HEAD
   syncPolicy:
     automated:
@@ -28,8 +28,8 @@ spec:
     name: in-cluster
   project: default
   source:
-    path: kfdef/superset
-    repoURL: https://github.com/operate-first/odh.git
+    path: odh/overlays/quicklab/superset
+    repoURL: https://github.com/operate-first/apps.git
     targetRevision: HEAD
   syncPolicy:
     automated:

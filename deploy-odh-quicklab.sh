@@ -1,5 +1,3 @@
-API=upi-0.mptest.lab.upshift.rdu2.redhat.com:6443
-
 EMP="\e[1;4m"
 NORMAL="\e[0m"
 
