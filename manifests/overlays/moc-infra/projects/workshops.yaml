@@ -18,13 +18,13 @@ spec:
     - name: project-admin
       description: Read/Write access to this project only
       policies:
-        - p, proj:workshops:project-admin, applications, get, data-science/*, allow
-        - p, proj:workshops:project-admin, applications, create, data-science/*, allow
-        - p, proj:workshops:project-admin, applications, update, data-science/*, allow
-        - p, proj:workshops:project-admin, applications, delete, data-science/*, allow
-        - p, proj:workshops:project-admin, applications, sync, data-science/*, allow
-        - p, proj:workshops:project-admin, applications, override, data-science/*, allow
-        - p, proj:workshops:project-admin, applications, action/*, data-science/*, allow
+        - p, proj:workshops:project-admin, applications, get, workshops/*, allow
+        - p, proj:workshops:project-admin, applications, create, workshops/*, allow
+        - p, proj:workshops:project-admin, applications, update, workshops/*, allow
+        - p, proj:workshops:project-admin, applications, delete, workshops/*, allow
+        - p, proj:workshops:project-admin, applications, sync, workshops/*, allow
+        - p, proj:workshops:project-admin, applications, override, workshops/*, allow
+        - p, proj:workshops:project-admin, applications, action/*, workshops/*, allow
       groups:
         - data-science
         - operate-first
