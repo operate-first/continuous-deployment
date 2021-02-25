@@ -8,7 +8,7 @@ spec:
     name: in-cluster
   project: default
   source:
-    path: odh/base/operator
+    path: cluster-scope/base/subscriptions/opendatahub-operator
     repoURL: https://github.com/operate-first/apps.git
     targetRevision: HEAD
   syncPolicy:
