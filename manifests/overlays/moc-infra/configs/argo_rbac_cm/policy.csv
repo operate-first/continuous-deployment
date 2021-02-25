@@ -6,6 +6,9 @@ p, role:standard-user, projects, get, *, allow
 p, role:standard-user, accounts, get, *, allow
 p, role:standard-user, gpgkeys, get, *, allow
 
+# Define a custom default role for a public anonymous users with read only access to workshops apps
+p, role:readonly-public, applications, get, workshops/*, allow
+
 # Give Openshift group (argocd-admins) the argocd admin role with unrestricted argocd access
 g, argocd-admins, role:admin
 

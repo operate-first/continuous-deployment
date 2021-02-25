@@ -22,6 +22,7 @@ configMapGenerator:
   behavior: replace
   files:
   - configs/argo_rbac_cm/policy.csv
+  - configs/argo_rbac_cm/policy.default
 generatorOptions:
   disableNameSuffixHash: true
 generators:
