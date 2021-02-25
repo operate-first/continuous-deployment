@@ -15,6 +15,7 @@ configMapGenerator:
   - configs/argo_cm/dex.config
   - configs/argo_cm/configManagementPlugins
   - configs/argo_cm/globalProjects
+  - configs/argo_cm/resource.exclusions
   envs:
   - configs/argo_cm/envs
 - name: argocd-rbac-cm
