@@ -1,4 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - app-of-apps.yaml
+  - app-of-apps-infra.yaml
+  - app-of-apps-zero.yaml

@@ -8,7 +8,7 @@ spec:
     name: moc-infra
   project: operate-first
   source:
-    path: overlays/moc
+    path: envs/moc/zero
     repoURL: https://github.com/operate-first/argocd-apps.git
     targetRevision: HEAD
   syncPolicy:
