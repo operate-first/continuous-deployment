@@ -11,9 +11,3 @@ spec:
     path: envs/moc/zero
     repoURL: https://github.com/operate-first/argocd-apps.git
     targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - Validate=false
