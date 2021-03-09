@@ -16,6 +16,8 @@ spec:
       server: 'https://api.zero.massopen.cloud:6443'
     - namespace: 'kubeflow'
       server: 'https://api.zero.massopen.cloud:6443'
+    - namespace: 'observatorium-operator'
+      server: 'https://api.zero.massopen.cloud:6443'
   sourceRepos:
     - '*'
   roles:
