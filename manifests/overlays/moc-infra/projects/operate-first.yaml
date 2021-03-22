@@ -12,6 +12,8 @@ spec:
       server: 'https://api.moc-infra.massopen.cloud:6443'
     - namespace: 'opf-*'
       server: 'https://api.zero.massopen.cloud:6443'
+    - namespace: 'tekton-pipelines'
+      server: 'https://api.zero.massopen.cloud:6443'
     - namespace: 'openshift-logging'
       server: 'https://api.zero.massopen.cloud:6443'
     - namespace: 'kubeflow'
