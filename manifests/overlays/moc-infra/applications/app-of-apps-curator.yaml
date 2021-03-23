@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: opf-app-of-apps-curator
+spec:
+  destination:
+    namespace: argocd
+    name: curator
+  project: operate-first
+  source:
+    path: envs/moc/curator
+    repoURL: https://github.com/operate-first/argocd-apps.git
+    targetRevision: HEAD
