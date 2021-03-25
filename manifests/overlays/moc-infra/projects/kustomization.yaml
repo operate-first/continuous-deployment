@@ -7,6 +7,7 @@ resources:
   - data-science.yaml
   - thoth.yaml
   - rekor.yaml
+  - lab-cicd.yaml
   - mesh-for-data.yaml
   - global_project.yaml
   - workshops.yaml
