@@ -1,29 +1,23 @@
-# Continous Deployment
+# ArgoCD Custom Image
 
-[This repository](https://github.com/operate-first/continuous-deployment) contains an opinionated reference architecture to setup, manage and operate a continous deployment pipeline.
+This repo contains the Operate-First ArgoCD custom Image. The image is used by the Operate-First ArgoCD repo-server deployment. Below is a list of the tools packed into this image. See the `Dockerfile` for more info.
 
-### Prerequisites
-* Kustomize 3.8.1+
-* SOPS 3.4.0+
-* KSOPS 2.1.2+
+### Tools included in the Image
 
-Find more information on how to install the pre-requisites [here](docs/manage_your_app_secrets.md).
+We use the following tools with corresponding versions.
 
-Ensure you have the key to decrypt secrets. Open an issue in this [repository](https://github.com/operate-first/continuous-deployment/issues) requesting access.
+ArgoCD: 1.8.3
 
-### GPG Key access
+KSOPs: 2.3.3
 
-This repo encrypts secrets using a dev test key, you can find the test key in [examples/key.asc](https://github.com/oindrillac/continuous-deployment/blob/master/examples/key.asc) folder.
+Kustomize: 3.8.0
 
-```
-$ base64 -d < examples/key.asc | gpg --import
-```
+SOPS: 3.6.1
 
-You will need to import this key to be able to decrypt the contents of the secrets using sops.
+Helm: 3.4.1
 
-Do NOT use this gpg key for prod purposes.
+Helm-Secrets: 3.4.1
 
+The KSOPS and Kustomize versions refer to the ones provisioned with ArgoCD.
 
-### Howtos
-
-See [how-to index](docs/) for various various procedures and how-tos when interacting with ArgoCD.
+Kustomize versions can be adjusted manually using [customized versions](https://argoproj.github.io/argo-cd/user-guide/kustomize/#custom-kustomize-versions).
