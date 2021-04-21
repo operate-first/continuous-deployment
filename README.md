@@ -6,13 +6,13 @@ This repo contains the Operate-First ArgoCD custom Image. The image is used by t
 
 We use the following tools with corresponding versions.
 
-ArgoCD: 1.8.3
+ArgoCD: 2.0.1
 
-KSOPs: 2.3.3
+KSOPs: 2.5.5
 
-Kustomize: 3.8.0
+Kustomize: 4.1.1
 
-SOPS: 3.6.1
+SOPS: 3.7.1
 
 Helm: 3.4.1
 
