@@ -6,17 +6,17 @@ This repo contains the Operate-First ArgoCD custom Image. The image is used by t
 
 We use the following tools with corresponding versions.
 
-ArgoCD: 2.0.1
+ArgoCD: 2.1.2
 
-KSOPs: 2.5.5
+KSOPs: 3.0.1
 
-Kustomize: 4.1.1
+Kustomize: 4.3.0
 
 SOPS: 3.7.1
 
-Helm: 3.4.1
+Helm: 3.6.0
 
-Helm-Secrets: 3.4.1
+Helm-Secrets: 3.6.0
 
 The KSOPS and Kustomize versions refer to the ones provisioned with ArgoCD.
 
