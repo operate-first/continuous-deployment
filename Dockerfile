@@ -1,4 +1,4 @@
-ARG ARGO_CD_VERSION="v2.1.2"
+ARG ARGO_CD_VERSION="v2.1.3"
 # Always match Argo CD Dockerfile's Go version!
 # https://github.com/argoproj/argo-cd/blob/master/Dockerfile
 ARG KSOPS_VERSION="v3.0.1"

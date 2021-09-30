@@ -6,7 +6,7 @@ This repo contains the Operate-First ArgoCD custom Image. The image is used by t
 
 We use the following tools with corresponding versions.
 
-ArgoCD: 2.1.2
+ArgoCD: 2.1.3
 
 KSOPs: 3.0.1
 
