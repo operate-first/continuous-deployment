@@ -44,7 +44,9 @@ RUN apt-get update && \
     mkdir -p $XDG_DATA_HOME/helm/plugins && \
     helm plugin install https://github.com/jkroepke/helm-secrets --version=$HELM_SECRETS_VERSION && \
     chgrp -R 0 $XDG_DATA_HOME/helm/plugins/helm-secrets/ && \
-    chmod -R g+rwX $XDG_DATA_HOME/helm/plugins/helm-secrets/
+    chmod -R g+rwX $XDG_DATA_HOME/helm/plugins/helm-secrets/ && \
+    mkdir -p $KUSTOMIZE_PLUGIN_PATH/pcjun97/v1/hashannotator && \
+    curl -L https://github.com/pcjun97/kustomize-hash-annotator/releases/download/1.0.1/HashAnnotator_1.0.1_Linux_x86_64.tar.gz | tar -xzf - -C $KUSTOMIZE_PLUGIN_PATH/pcjun97/v1/hashannotator/
 
 # Switch back to non-root user
 USER argocd
